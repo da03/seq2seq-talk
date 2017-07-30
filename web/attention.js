@@ -243,6 +243,12 @@ d3.json("vis_out.json", (error, data) => {
         atten.show(all_data[im]);
 
     };
+var tooltip = d3.select("body")
+    .append("div")
+    .style("position", "absolute")
+    .style("z-index", "10")
+    .style("visibility", "visible")
+    .text("a simple tooltip");
     d3.select("#im2latexbuttons").insert("a", ":first-child").text("next").on("click", () => { im++; show(im);          start(im);return false;} );
     d3.select("#im2latexbuttons").insert("a", ":first-child").text("last").on("click", () => { im--; show(im);          start(im);return false;} );
     show(im);
@@ -251,8 +257,8 @@ d3.json("vis_out.json", (error, data) => {
         var intervalId = setInterval(() => { cur++;
                             atten.renderText(cur);
                             atten.renderHeatMap(cur);
-console.log(cur);
-console.log(im);
+tooltip.text(cur);
+//console.log(im);
                             if (cur == all_data[im].words.length) {
                                 clearInterval(intervalId);
                             }
