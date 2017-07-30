@@ -134,7 +134,7 @@ class Attention {
         if (ignore_symbols(this.data.words[focus].word))
             return;
         
-        var base = this.base.selectAll("rect")
+        var base = this.base.selectAll("rect.a")
                 .data(this.data.words[focus].scores,
                       d => `${d.row} ${d.col}`);
         
@@ -143,7 +143,8 @@ class Attention {
             .attr("width", step(this.xImScale))
             .attr("height", step(this.yImScale))
             .attr("x", d => this.xImScale(d.col-1))
-            .attr("y", d => this.yImScale(d.row-1));
+            .attr("y", d => this.yImScale(d.row-1))
+            .attr("class", "a");
          
         base.exit().remove();
         
@@ -151,6 +152,25 @@ class Attention {
             .transition()
             .duration(100)
             .style("opacity", d => d.score / 2);
+
+        base = this.base.selectAll("rect.b")
+                .data(this.data.words[focus].scores,
+                      d => `${d.row} ${d.col}`);
+        
+        base.enter()
+            .append("rect")
+            .attr("width", step(this.xImScale))
+            .attr("height", step(this.yImScale))
+            .attr("x", d => this.xImScale(d.col-1))
+            .attr("y", d => this.yImScale(d.row-1))
+            .attr("class", "a");
+         
+        base.exit().remove();
+        
+        base.style("fill", "blue")
+            .transition()
+            .duration(100)
+            .style("opacity", d => d.score_coarse / 4);
     }
 
 
@@ -210,7 +230,7 @@ class Attention {
 
 
 var cur = 0;
-d3.json("vis.json", (error, data) => {
+d3.json("vis_out.json", (error, data) => {
     all_data = data;
     var im = 10;
 
