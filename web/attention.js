@@ -250,8 +250,10 @@ setTimeout(function() {
     //    start(im);    
 }, (3 * 1000));
     function start(myim) {
+alert('ifsfds');
         var intervalId = setInterval(() => { cur++;
                             atten.renderText(cur);
+alert('ifsfds');
                             atten.renderHeatMap(cur);
 alert(cur);
 //console.log(im);
