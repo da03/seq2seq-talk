@@ -127,7 +127,9 @@ class Attention {
             .attr("y", min_pt(this.yImScale))
             .attr("width", span(this.xImScale) )
             .attr("height", span(this.yImScale));
+setTimeout(function(){
         func(v);
+    }, 5000);
 
     }
 
