@@ -253,7 +253,7 @@ var tooltip = d3.select("body")
     d3.select("#im2latexbuttons").insert("a", ":first-child").text("last").on("click", () => { im--; show(im);          start(im);return false;} );
     show(im);
 setTimeout(function() {
-        start(im);    
+    //    start(im);    
 }, (3 * 1000));
     function start(myim) {
         var intervalId = setInterval(() => { cur++;
