@@ -40,8 +40,8 @@ class Attention {
     constructor(base) {
         var margin = {top: 100, right: 10, bottom: 100, left: 10};
         
-        this.width = 1500 - margin.left - margin.right;
-        this.height = 700 - margin.top - margin.bottom;
+        this.width = 1100 - margin.left - margin.right;
+        this.height = 650 - margin.top - margin.bottom;
         this.rows = 4;
         
         this.container = d3.select(base)
