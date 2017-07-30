@@ -91,7 +91,7 @@ class Attention {
             that.makeScales(this.height, this.width, data.words.length);
             that.render(func, v);
         }
-        img.src = `img/${data.img}`;
+        img.src = `http://lstm.seas.harvard.edu/latex/img/${data.img}`;
     }
 
 
