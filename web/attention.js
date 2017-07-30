@@ -79,7 +79,7 @@ class Attention {
                 .range([imageStartX, imageStartX + this.imWidth * scale]);
     }
 
-    show(data) {
+    show(data, func, v) {
         this.data = data;
         for (var i  = 0; i < this.data.words.length; i++) {
             this.data.words[i].num = i;
@@ -90,6 +90,7 @@ class Attention {
         img.onload = function() {            
             that.makeScales(this.height, this.width, data.words.length);
             that.render();
+            func(v);
         }
         img.src = `img/${data.img}`;
     }
@@ -238,21 +239,21 @@ d3.json("vis_out.json", (error, data) => {
 
 
     
-    var show = (im, cur) => {
+    var show = (im, func, v) => {
         cur = 0;
-        atten.show(all_data[im]);
+        atten.show(all_data[im], func, v);
 
     };
-    d3.select("#im2latexbuttons").insert("a", ":first-child").text("next").on("click", () => { im++; show(im); cur = 0;          start(im); return false;} );
-    d3.select("#im2latexbuttons").insert("a", ":first-child").text("last").on("click", () => { im--; show(im); cur = 0;          start(im); return false;} );
-    show(im);
-    start(im);    
+    d3.select("#im2latexbuttons").insert("a", ":first-child").text("next").on("click", () => { im++; show(im, start, im); cur = 0;          return false;} );
+    d3.select("#im2latexbuttons").insert("a", ":first-child").text("last").on("click", () => { im--; show(im, start, im); cur = 0;          return false;} );
+    show(im, start, im);
     function start(myim) {
+        var cur = 0;
         var intervalId = setInterval(() => { cur++;
                             atten.renderText(cur);
                             atten.renderHeatMap(cur);
 //console.log(im);
-                            if (cur == all_data[im].words.length) {
+                            if (cur == all_data[myim].words.length) {
                                 clearInterval(intervalId);
                             }
                             return myim == im;
