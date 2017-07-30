@@ -239,7 +239,7 @@ setTimeout(function(){
 var cur = 0;
 d3.json("vis_out.json", (error, data) => {
     all_data = data;
-    var im = 10;
+    var im = 16;
 
     var atten = new Attention("#im2latex");
 
