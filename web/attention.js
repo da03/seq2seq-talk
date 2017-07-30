@@ -89,14 +89,13 @@ class Attention {
         
         img.onload = function() {            
             that.makeScales(this.height, this.width, data.words.length);
-            that.render();
-            func(v);
+            that.render(func, v);
         }
         img.src = `img/${data.img}`;
     }
 
 
-    renderImage() {
+    renderImage(func, v) {
         var base = this.base.selectAll("g.image")
             .data(d => [d])
             .enter()
@@ -128,6 +127,7 @@ class Attention {
             .attr("y", min_pt(this.yImScale))
             .attr("width", span(this.xImScale) )
             .attr("height", span(this.yImScale));
+        func(v);
 
     }
 
@@ -216,7 +216,7 @@ class Attention {
     }
 
     
-    render() {
+    render(func, v) {
         this.base = this.container
             .selectAll("g.base")
             .data([this.data], d => d.img);
@@ -225,7 +225,7 @@ class Attention {
             .append("g").classed("base", true);
         this.base.exit().remove();
         
-        this.renderImage();
+        this.renderImage(func, v);
     }
 }
 
