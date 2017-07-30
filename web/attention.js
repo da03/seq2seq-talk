@@ -248,9 +248,12 @@ d3.json("vis_out.json", (error, data) => {
     show(im);
         start(im);    
     function start(myim) {
-        setInterval(() => { cur++;
+        var intervalId = setInterval(() => { cur++;
                             atten.renderText(cur);
                             atten.renderHeatMap(cur);
+                            if (cur == all_data[im].words.length) {
+                                clearInterval(intervalId);
+                            }
                             return myim == im;
                           },
                     500);
