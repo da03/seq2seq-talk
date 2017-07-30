@@ -248,6 +248,7 @@ d3.json("vis_out.json", (error, data) => {
     d3.select("#im2latexbuttons").insert("a", ":first-child").text("last").on("click", () => { im--; show(im, start, im); cur = 0;          return false;} );
     show(im, start, im);
     function start(myim) {
+alert('here');
         var cur = 0;
         var intervalId = setInterval(() => { cur++;
                             atten.renderText(cur);
