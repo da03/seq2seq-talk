@@ -243,20 +243,17 @@ d3.json("vis_out.json", (error, data) => {
         atten.show(all_data[im]);
 
     };
-    d3.select("#im2latexbuttons").insert("a", ":first-child").text("next").on("click", () => { im++; show(im);          start(im);return false;} );
-    d3.select("#im2latexbuttons").insert("a", ":first-child").text("last").on("click", () => { im--; show(im);          start(im);return false;} );
-alert('ifsfds');
+    d3.select("#im2latexbuttons").insert("a", ":first-child").text("next").on("click", () => { im++; show(im, cur);          start(im);return false;} );
+    d3.select("#im2latexbuttons").insert("a", ":first-child").text("last").on("click", () => { im--; show(im, cur);          start(im);return false;} );
     show(im);
 setTimeout(function() {
     //    start(im);    
 }, (3 * 1000));
     function start(myim) {
-alert('ifsfds');
         var intervalId = setInterval(() => { cur++;
                             atten.renderText(cur);
                             //atten.renderHeatMap(cur);
 alert(cur);
-alert(im);
 alert(all_data[im].words.length);
 //console.log(im);
                             if (cur == all_data[im].words.length) {
