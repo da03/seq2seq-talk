@@ -122,7 +122,7 @@ class Attention {
         }
 
         base.insert("image", ":first-child")
-            .attr("xlink:href", d => `img/${d.img}`)
+            .attr("xlink:href", d => `http://lstm.seas.harvard.edu/latex/img/${d.img}`)
             .attr("x", min_pt(this.xImScale))
             .attr("y", min_pt(this.yImScale))
             .attr("width", span(this.xImScale) )
