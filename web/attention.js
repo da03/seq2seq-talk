@@ -251,6 +251,8 @@ d3.json("vis_out.json", (error, data) => {
         var intervalId = setInterval(() => { cur++;
                             atten.renderText(cur);
                             atten.renderHeatMap(cur);
+console.log(cur);
+console.log(im);
                             if (cur == all_data[im].words.length) {
                                 clearInterval(intervalId);
                             }
