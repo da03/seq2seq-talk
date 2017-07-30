@@ -254,9 +254,10 @@ setTimeout(function() {
 alert('ifsfds');
         var intervalId = setInterval(() => { cur++;
                             atten.renderText(cur);
-alert('ifsfds');
                             //atten.renderHeatMap(cur);
 alert(cur);
+alert(im);
+alert(all_data[im].words.length);
 //console.log(im);
                             if (cur == all_data[im].words.length) {
                                 clearInterval(intervalId);
