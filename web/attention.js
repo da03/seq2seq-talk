@@ -129,7 +129,7 @@ class Attention {
             .attr("height", span(this.yImScale));
 setTimeout(function(){
         func(v);
-    }, 5000);
+    }, 1000);
 
     }
 
@@ -147,12 +147,13 @@ setTimeout(function(){
             .attr("height", step(this.yImScale))
             .attr("x", d => this.xImScale(d.col-1))
             .attr("y", d => this.yImScale(d.row-1))
+            .style("fill", "red")
+            .style("opacity", d => 0)
             .attr("class", "a");
          
         base.exit().remove();
         
         base.style("fill", "red")
-            .style("opacity", d => 0)
             .transition()
             .duration(100)
             .style("opacity", d => d.score / 2);
@@ -167,12 +168,13 @@ setTimeout(function(){
             .attr("height", step(this.yImScale))
             .attr("x", d => this.xImScale(d.col-1))
             .attr("y", d => this.yImScale(d.row-1))
+            .style("fill", "blue")
+            .style("opacity", d => 0)
             .attr("class", "b");
          
         base.exit().remove();
         
         base.style("fill", "blue")
-            .style("opacity", d => 0)
             .transition()
             .duration(100)
             .style("opacity", d => d.score_coarse / 4);
