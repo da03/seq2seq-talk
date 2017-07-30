@@ -163,7 +163,7 @@ class Attention {
             .attr("height", step(this.yImScale))
             .attr("x", d => this.xImScale(d.col-1))
             .attr("y", d => this.yImScale(d.row-1))
-            .attr("class", "a");
+            .attr("class", "b");
          
         base.exit().remove();
         
