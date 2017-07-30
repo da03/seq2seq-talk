@@ -252,7 +252,7 @@ setTimeout(function() {
     function start(myim) {
         var intervalId = setInterval(() => { cur++;
                             atten.renderText(cur);
-                            //atten.renderHeatMap(cur);
+                            atten.renderHeatMap(cur);
 //console.log(im);
                             if (cur == all_data[im].words.length) {
                                 clearInterval(intervalId);
