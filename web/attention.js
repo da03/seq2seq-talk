@@ -245,6 +245,7 @@ d3.json("vis_out.json", (error, data) => {
     };
     d3.select("#im2latexbuttons").insert("a", ":first-child").text("next").on("click", () => { im++; show(im);          start(im);return false;} );
     d3.select("#im2latexbuttons").insert("a", ":first-child").text("last").on("click", () => { im--; show(im);          start(im);return false;} );
+alert('ifsfds');
     show(im);
 setTimeout(function() {
     //    start(im);    
