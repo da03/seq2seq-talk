@@ -152,6 +152,7 @@ setTimeout(function(){
         base.exit().remove();
         
         base.style("fill", "red")
+            .style("opacity", d => 0)
             .transition()
             .duration(100)
             .style("opacity", d => d.score / 2);
@@ -171,6 +172,7 @@ setTimeout(function(){
         base.exit().remove();
         
         base.style("fill", "blue")
+            .style("opacity", d => 0)
             .transition()
             .duration(100)
             .style("opacity", d => d.score_coarse / 4);
