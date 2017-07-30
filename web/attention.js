@@ -251,8 +251,10 @@ var tooltip = d3.select("body")
     .text("a simple tooltip");
     d3.select("#im2latexbuttons").insert("a", ":first-child").text("next").on("click", () => { im++; show(im);          start(im);return false;} );
     d3.select("#im2latexbuttons").insert("a", ":first-child").text("last").on("click", () => { im--; show(im);          start(im);return false;} );
+setTimeout(function() {
     show(im);
         start(im);    
+}, (3 * 1000));
     function start(myim) {
         var intervalId = setInterval(() => { cur++;
                             atten.renderText(cur);
