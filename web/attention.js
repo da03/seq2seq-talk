@@ -270,5 +270,5 @@ alert('here');
 
 });
 
-var width = 1300;
-var height = 700;
+var width = 1100;
+var height = 650;
