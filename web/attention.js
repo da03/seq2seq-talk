@@ -79,7 +79,7 @@ class Attention {
                 .range([imageStartX, imageStartX + this.imWidth * scale]);
     }
 
-    show(data) {
+    show(data, func, v) {
         this.data = data;
         for (var i  = 0; i < this.data.words.length; i++) {
             this.data.words[i].num = i;
@@ -89,13 +89,13 @@ class Attention {
         
         img.onload = function() {            
             that.makeScales(this.height, this.width, data.words.length);
-            that.render();
+            that.render(func, v);
         }
         img.src = `img/${data.img}`;
     }
 
 
-    renderImage() {
+    renderImage(func, v) {
         var base = this.base.selectAll("g.image")
             .data(d => [d])
             .enter()
@@ -127,6 +127,9 @@ class Attention {
             .attr("y", min_pt(this.yImScale))
             .attr("width", span(this.xImScale) )
             .attr("height", span(this.yImScale));
+setTimeout(function(){
+        func(v);
+    }, 1000);
 
     }
 
@@ -143,7 +146,9 @@ class Attention {
             .attr("width", step(this.xImScale))
             .attr("height", step(this.yImScale))
             .attr("x", d => this.xImScale(d.col-1))
-            .attr("y", d => this.yImScale(d.row-1));
+            .attr("y", d => this.yImScale(d.row-1))
+            .style("fill", "red")
+            .style("opacity", d => 0);
          
         base.exit().remove();
         
@@ -195,7 +200,7 @@ class Attention {
     }
 
     
-    render() {
+    render(func, v) {
         this.base = this.container
             .selectAll("g.base")
             .data([this.data], d => d.img);
@@ -204,7 +209,7 @@ class Attention {
             .append("g").classed("base", true);
         this.base.exit().remove();
         
-        this.renderImage();
+        this.renderImage(func, v);
     }
 }
 
@@ -218,19 +223,23 @@ d3.json("vis.json", (error, data) => {
 
 
     
-    var show = (im, cur) => {
+    var show = (im, func, v) => {
         cur = 0;
-        atten.show(all_data[im]);
+        atten.show(all_data[im], func, v);
 
     };
-    d3.select("#im2latexbuttons").insert("a", ":first-child").text("next").on("click", () => { im++; show(im);          start(im);return false;} );
-    d3.select("#im2latexbuttons").insert("a", ":first-child").text("last").on("click", () => { im--; show(im);          start(im);return false;} );
-    show(im);
+    d3.select("#im2latexbuttons").insert("a", ":first-child").text("next").on("click", () => { im++; cur = 0; show(im, start, im); cur = 0;          return false;} );
+    d3.select("#im2latexbuttons").insert("a", ":first-child").text("last").on("click", () => { im--; cur = 0; show(im, start, im); cur = 0;          return false;} );
+    show(im, start, im);
         start(im);    
     function start(myim) {
-        setInterval(() => { cur++;
+        cur = 0;
+        var intervalId = setInterval(() => { cur++;
                             atten.renderText(cur);
                             atten.renderHeatMap(cur);
+                            if (cur == all_data[myim].words.length) {
+                                clearInterval(intervalId);
+                            }
                             return myim == im;
                           },
                     500);
