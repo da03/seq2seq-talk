@@ -231,7 +231,6 @@ d3.json("vis.json", (error, data) => {
     d3.select("#im2latexbuttons").insert("a", ":first-child").text("next").on("click", () => { im++; cur = 0; show(im, start, im); cur = 0;          return false;} );
     d3.select("#im2latexbuttons").insert("a", ":first-child").text("last").on("click", () => { im--; cur = 0; show(im, start, im); cur = 0;          return false;} );
     show(im, start, im);
-        start(im);    
     function start(myim) {
         cur = 0;
         var intervalId = setInterval(() => { cur++;
