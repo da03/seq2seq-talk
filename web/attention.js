@@ -158,26 +158,26 @@ setTimeout(function(){
             .duration(100)
             .style("opacity", d => d.score / 2);
 
-        base = this.base.selectAll("rect.b")
-                .data(this.data.words[focus].scores,
-                      d => `${d.row} ${d.col}`);
+        //base = this.base.selectAll("rect.b")
+        //        .data(this.data.words[focus].scores,
+        //              d => `${d.row} ${d.col}`);
         
-        base.enter()
-            .append("rect")
-            .attr("width", step(this.xImScale))
-            .attr("height", step(this.yImScale))
-            .attr("x", d => this.xImScale(d.col-1))
-            .attr("y", d => this.yImScale(d.row-1))
-            .style("fill", "blue")
-            .style("opacity", d => 0)
-            .attr("class", "b");
-         
-        base.exit().remove();
-        
-        base.style("fill", "blue")
-            .transition()
-            .duration(100)
-            .style("opacity", d => d.score_coarse / 4);
+        //base.enter()
+        //    .append("rect")
+        //    .attr("width", step(this.xImScale))
+        //    .attr("height", step(this.yImScale))
+        //    .attr("x", d => this.xImScale(d.col-1))
+        //    .attr("y", d => this.yImScale(d.row-1))
+        //    .style("fill", "blue")
+        //    .style("opacity", d => 0)
+        //    .attr("class", "b");
+        // 
+        //base.exit().remove();
+        //
+        //base.style("fill", "blue")
+        //    .transition()
+        //    .duration(100)
+        //    .style("opacity", d => d.score_coarse / 4);
     }
 
 
